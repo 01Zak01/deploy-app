@@ -11,7 +11,7 @@ on:
         required: true
         default: ''
       image_tag:
-        describtion: 'provide image tag'
+        describtion: 'provide tag'
         required: true
         default: ''
 
@@ -50,6 +50,6 @@ jobs:
     - name: Deploy
       run: |
     
-        helm upgrade --install my-release ./hello --set repository.image=${{ inputs.docker_image }} --set repository.tag=${{ image_tag }}
+        helm upgrade --install my-release ./hello --set repository.image=${{ inputs.docker_image }} --set repository.tag=${{ inputs.image_tag }}
 
   
