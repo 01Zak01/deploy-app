@@ -1,10 +1,19 @@
 name: Deploy to GKE
 
 on:
-  push:
-    branches: ["main"]
+  # push:
+  #   branches: ["main"]
 
   workflow_dispatch:
+    inputs:
+      docker_image:
+        describtion: 'provide docker repo'
+        required: true
+        default: ''
+      image_tag:
+        describtion: 'provide image tag'
+        required: true
+        default: ''
 
 jobs:
   setup-build-publish:
@@ -41,6 +50,6 @@ jobs:
     - name: Deploy
       run: |
     
-        helm upgrade --install my-release ./hello --set repository.image=kaizen2024/python-app1 --set repository.tag=2.0.0
+        helm upgrade --install my-release ./hello --set repository.image=${{ inputs.docker_image }} --set repository.tag=${{ image_tag }}
 
   
