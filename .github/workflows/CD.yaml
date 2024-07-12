@@ -3,6 +3,8 @@ name: Deploy to GKE
 on:
   push:
     branches: ["main"]
+    
+  workflow_dispatch:
 
 jobs:
   setup-build-publish:
